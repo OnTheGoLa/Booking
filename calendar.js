@@ -51,7 +51,7 @@ function renderCalendar(){
     getUnavailable(months[date.getMonth()])
 }
 
-console.log(12);
+console.log(13);
 
 let selectedDays = []
 
