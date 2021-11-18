@@ -48,7 +48,7 @@ function renderCalendar(){
     monthDays.innerHTML = days
 
     connectCalendar()
-    getUnavailable()
+    getUnavailable(months[date.getMonth()])
 }
 
 let selectedDays = []
@@ -123,9 +123,9 @@ document.querySelectorAll('.calendar-arrow').forEach( e => {
 // API Calls
 const http = new easyHTTP;
 
-function getUnavailable(){
+function getUnavailable(month){
 
-    http.get(`${URL}/find-element/month/${months[date.getMonth()]}`, function(e){
+    http.get(`${URL}/find-element/month/${month}`, function(e){
 
         console.log(e);
     })
