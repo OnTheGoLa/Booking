@@ -119,4 +119,17 @@ document.querySelectorAll('.calendar-arrow').forEach( e => {
     })
 })
 
+// API Calls
+const http = new easyHTTP;
+
+function getUnavailable(){
+
+    http.get(`${URL}/find-element/month/${months[date.getMonth()]}`, function(e){
+
+        console.log(e);
+    })
+
+
+}
+
 renderCalendar()
