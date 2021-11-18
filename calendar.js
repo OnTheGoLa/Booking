@@ -48,6 +48,7 @@ function renderCalendar(){
     monthDays.innerHTML = days
 
     connectCalendar()
+    getUnavailable()
 }
 
 let selectedDays = []
@@ -128,7 +129,6 @@ function getUnavailable(){
 
         console.log(e);
     })
-
 
 }
 
