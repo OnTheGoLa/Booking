@@ -228,6 +228,11 @@ function formNavigate(btn){
     currentPage.querySelectorAll("[required]").forEach(function(i) {
       if (!allAreFilled) return;
       if (!i.value) allAreFilled = false;
+      if (i.type === "file") {
+          if(i.getAttribute('data-value') != null){
+              allAreFilled = true
+          }
+      }
       if (i.type === "radio") {
         let radioValueCheck = false;
         currentPage.querySelectorAll(`[name=${i.name}]`).forEach(function(r) {
@@ -255,7 +260,8 @@ function formNavigate(btn){
                   currentValue++
 
                   if(currentValue == 3){
-                      btn.setAttribute('direction', 'payment')
+                      btn.classList.add('hidden')
+                      document.querySelector('.reserve-button').classList.add('active')
                   }
 
                   document.querySelectorAll(`[page-no='${currentValue}']`).forEach(e => {
@@ -277,7 +283,8 @@ function formNavigate(btn){
             document.querySelector('.form-page.active').classList.remove('active')
 
             if( currentValue == 3){
-                document.querySelector('[direction="payment"]').setAttribute('direction', 'forward')
+                document.querySelector('[direction="payment"]').classList.remove('hidden')
+                document.querySelector('.reserve-button').classList.remove('active')
             }
 
             currentValue--
