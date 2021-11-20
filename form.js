@@ -284,6 +284,8 @@ function formNavigate(btn){
                 alert('Please fill all the required fields');
           
                 } else{
+
+                    rememberForm()
           
                     stripe.redirectToCheckout({
 
@@ -301,8 +303,6 @@ function formNavigate(btn){
               }
 
     }
-
-   
 
 }
  
@@ -393,6 +393,61 @@ function daysCost(){
 
         e.textContent = `$${dayAmount*150}.00`
     })
+}
+
+function rememberForm(){
+
+    let form = {
+
+        days: [],
+        addOns: [],
+
+        foodHandlersPermit: 0,
+
+        name: 'a',
+        businessName: 'a',
+        businessInsta: 'a',
+        address: 'a',
+        apt: 'not filled out',
+        city: 'a',
+        state: '',
+        zipCode: '',
+        email: '',
+        phone: '',
+        contactMethod: '',
+    }
+
+    form.days = selectedDays
+    form.addOns = selectedAddOns
+
+    document.querySelectorAll('[name="permit"]').forEach( e => {
+
+        if(e.checked){
+
+            form.foodHandlersPermit = e.getAttribute('[value]')
+        }
+    } )
+
+    form.name = document.querySelector('[name="Name"]')
+    form.businessName = document.querySelector('[name="Business Name"]')
+    form.businessInsta = document.querySelector('[name="Business Instagram"]')
+    form.address = document.querySelector('[name="Address"]')
+    form.apt = document.querySelector('[name="Apt"]')
+    form.city = document.querySelector('[name="City"]')
+    form.state = document.querySelector('[name="State"]')
+    form.zipCode = document.querySelector('[name="Zip Code"]')
+    form.email = document.querySelector('[name="Email"]')
+    form.phone = document.querySelector('[name="Phone Number"]')
+
+    document.querySelectorAll('[name="contact method"]').forEach( e => {
+
+        if(e.checked){
+
+            form.contactMethod = e.getAttribute('[value]')
+        }
+    } )
+
+    sessionStorage.setItem('form', JSON.stringify(form))
 }
 
 //Function calls
