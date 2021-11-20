@@ -1,5 +1,5 @@
 const date = new Date()
-const currentDate = date
+const currentDate = new Date()
 
 function renderCalendar(){
 
