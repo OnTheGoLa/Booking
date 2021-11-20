@@ -69,12 +69,12 @@ function connectCalendar(){
     
         // Disconnect far months
         document.querySelector('.calendar-arrow.left').classList.add('inactive')
-    }else if( currentDate.getMonth() + 6 == date.getMonth()){
+    }else if( currentDate.getMonth() + 6 == date.getMonth() || currentDate.getMonth() - 6 == date.getMonth()){
         
         document.querySelector('.calendar-arrow.right').classList.add('inactive')
     }else{
-        document.querySelector('.calendar-arrow.right').classList.add('inactive')
-        document.querySelector('.calendar-arrow.left').classList.add('inactive')
+        document.querySelector('.calendar-arrow.right').classList.remove('inactive')
+        document.querySelector('.calendar-arrow.left').classList.remove('inactive')
     }
 
     document.querySelectorAll('.current-month-day').forEach( e => {
