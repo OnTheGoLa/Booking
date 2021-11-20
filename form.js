@@ -3,8 +3,11 @@ let selectedDays = []
 let selectedAddOns = []
 let totalPrice = 0
 
+const http = new easyHTTP;
+var stripe = Stripe('pk_live_51HN0nqJ2ZoJfeJPy6PHSpQe5nBORTEfPgP2IvJthnBXGkgwGR5ErLsQhISXTFz9kvWQOP5l4tFUtP4on9IO5vJ4T00J1FzPitG');
+
 function renderCalendar(){
-    
+
     date.setDate(1)
 
     const monthDays = document.querySelector('.calendar-days')
@@ -50,7 +53,71 @@ function renderCalendar(){
 
     monthDays.innerHTML = days
 
-    connectCalendar(months[date.getMonth()], date.getFullYear())
+    getUnavailable(months[date.getMonth()], date.getFullYear())
+}
+
+function getUnavailable(month, year){
+
+    unavailableDays = []
+
+    http.get(`${URL}/find-element/Month/${month}`, function(e){
+
+        let data = Object.values(e)
+
+        let noOfTrucks = 0
+
+        data.forEach( e => {
+
+            if( e.Truck_Num != null ){
+
+                noOfTrucks++
+
+            }else{
+                let duplicateNo = 1
+
+                data.forEach( a => {
+
+                    if(e.Day == a.Day){
+
+                        duplicateNo++
+
+                        if(duplicateNo == noOfTrucks){
+                            console.log('gotten!')
+
+                            let thisDay = {
+                                year: a.Year.toString(),
+                                month: a.Month.toString(),
+                                day: a.Day.toString()
+                            }
+
+                            unavailableDays.push(thisDay)
+
+                            data = dayRemoveV(data, a)
+                        }
+
+                    }
+                
+                })
+
+            }
+        })
+
+        connectCalendar(month, year)
+    })
+
+}
+
+function dayRemoveV(arr, value) { 
+    
+    return arr.filter(function(ele){ 
+
+        if(ele.Day == value.Day){
+
+            return false 
+        } else{
+            return true
+        }
+    });
 }
 
 function connectCalendar(month, year){
