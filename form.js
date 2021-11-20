@@ -170,6 +170,10 @@ function formNavigate(btn){
           
                   currentValue++
 
+                  if(currentValue == 3){
+                      btn.setAttribute('direction', 'payment')
+                  }
+
                   document.querySelectorAll(`[page-no='${currentValue}']`).forEach(e => {
                       e.classList.add('active')
                   })
@@ -179,7 +183,6 @@ function formNavigate(btn){
                       document.querySelector('.buttons').classList.add('hidden')
                   }else{
                       document.querySelector('.buttons').classList.remove('hidden')
-          
                   }
           
               }
@@ -188,6 +191,10 @@ function formNavigate(btn){
         case 'backward':
             
             document.querySelector('.form-page.active').classList.remove('active')
+
+            if( currentValue == 3){
+                document.querySelector('[direction="payment"]').setAttribute('direction', 'forward')
+            }
 
             currentValue--
 
@@ -203,6 +210,29 @@ function formNavigate(btn){
     
             }
             break;
+
+        case 'payment':
+
+                 if (!allAreFilled) {
+                alert('Please fill all the required fields');
+          
+                } else{
+          
+                    stripe.redirectToCheckout({
+
+                        lineItems: [{
+                        price: 'price_1Jxm5wJ2ZoJfeJPyRrBL3mAi',
+                        quantity: selectedDays.length,
+                        }],
+                        mode: 'payment',
+                        successUrl: 'https://on-the-go-la-de313f5726f9acc32090fe8b2f.webflow.io/book-now-copy',
+                        cancelUrl: 'https://on-the-go-la-de313f5726f9acc32090fe8b2f.webflow.io/book-now-copy',
+                    }).then(function (result) {
+                        window.alert('We are having an issue with your request. Please check your connection and try again.')
+                    });
+          
+              }
+
     }
 
    
