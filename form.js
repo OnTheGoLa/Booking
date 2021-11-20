@@ -180,6 +180,7 @@ function connectCalendar(month, year){
             }
         })
 
+
         // Unavailable and Selected days
         if(!e.classList.contains('unavailable')){
             
@@ -190,7 +191,6 @@ function connectCalendar(month, year){
             }
 
             e.addEventListener('click', () => {
-                console.log(selectedDays);
                 
                 e.classList.toggle('selected-dark')
 
@@ -212,6 +212,8 @@ function connectCalendar(month, year){
             e.innerHTML += '<div class="unavailable-popup"><p class="paragraph-8">Date<br>Unavailable</p><div class="triangle"></div></div>'
         }
     })
+
+    daysCost()
 
 }
 
@@ -505,4 +507,3 @@ document.querySelectorAll('.checkout-button').forEach( e => {
 
 
 renderCalendar()
-daysCost()
