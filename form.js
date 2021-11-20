@@ -163,14 +163,6 @@ function connectCalendar(month, year){
 
     document.querySelectorAll('.current-month-day').forEach( e => {
 
-        //TEST
-        
-
-        // for...of
-        if(e.textContent == 17){
-            e.classList.add('unavailable')
-        }
-
         selectedDays.forEach(e => {
     
             if(e.month == month && e.year == year){
@@ -460,17 +452,17 @@ function rememberForm(){
     } )
 
     form.name = document.querySelector('[name="Name"]').value
-    form.businessName = document.querySelector('[name="Business Name"]').value
-    form.businessInsta = document.querySelector('[name="Business Instagram"]').value
+    form.businessName = document.querySelector('[name="Business-Name"]').value
+    form.businessInsta = document.querySelector('[name="Business-Instagram"]').value
     form.address = document.querySelector('[name="Address"]').value
     form.apt = document.querySelector('[name="Apt"]').value
     form.city = document.querySelector('[name="City"]').value
     form.state = document.querySelector('[name="State"]').value
-    form.zipCode = document.querySelector('[name="Zip Code"]').value
+    form.zipCode = document.querySelector('[name="Zip-Code"]').value
     form.email = document.querySelector('[name="Email"]').value
-    form.phone = document.querySelector('[name="Phone Number"]').value
+    form.phone = document.querySelector('[name="Phone-Number"]').value
 
-    document.querySelectorAll('[name="contact method"]').forEach( e => {
+    document.querySelectorAll('[name="contact-method"]').forEach( e => {
 
         if(e.checked){
 
