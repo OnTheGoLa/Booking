@@ -1,4 +1,6 @@
 const date = new Date()
+const currentDate = new Date()
+
 let selectedDays = []
 let selectedAddOns = []
 let totalPrice = 0
