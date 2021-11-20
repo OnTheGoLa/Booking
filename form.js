@@ -211,10 +211,6 @@ function formNavigate(btn){
  
 function dayRemove(arr, value) { 
     
-    // return arr.filter(function(ele){ 
-    //     return ele != value; 
-    // });
-    
     return arr.filter(function(ele){ 
 
         if(ele.day == value.day && ele.month == value.month && ele.year == value.year){
@@ -225,6 +221,7 @@ function dayRemove(arr, value) {
         }
     });
 }
+
 function arrayRemove(arr, value) { 
     
     return arr.filter(function(ele){ 
@@ -328,6 +325,9 @@ document.querySelectorAll('.checkout-button').forEach( e => {
         formNavigate(e)
     })
 })
+
+// API Calls
+
 
 renderCalendar()
 daysCost()

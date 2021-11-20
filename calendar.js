@@ -5,7 +5,6 @@ function renderCalendar(){
 
     const monthDays = document.querySelector('.calendar-days')
     const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
-    const firstDay = date.getDate()
 
     const firstDayIndex = date.getDay()
     const prevLastDay = new Date(date.getFullYear(), date.getMonth(), 0).getDate()
@@ -47,22 +46,27 @@ function renderCalendar(){
 
     monthDays.innerHTML = days
 
-    connectCalendar()
+    getUnavailable(months[date.getMonth()])
 }
 
 let selectedDays = []
+let unavailableDays = []
 
 function connectCalendar(){
-
 
     document.querySelectorAll('.current-month-day').forEach( e => {
 
         //TEST
+        
+        unavailableDays.forEach( e => {
 
-        // for...of
-        if(e.textContent == 17){
-            e.classList.add('unavailable')
-        }
+            document.querySelectorAll('.current-month-day').forEach( day => {
+
+                if (day.textContent == e.day){
+                    day.classList.add('unavailable')
+                }
+            })
+        })
 
         // Unavailable and Selected days
         if(!e.classList.contains('unavailable')){
@@ -105,6 +109,19 @@ function arrayRemove(arr, value) {
     });
 }
 
+function dayRemove(arr, value) { 
+    
+    return arr.filter(function(ele){ 
+
+        if(ele.Day == value.Day){
+
+            return false 
+        } else{
+            return true
+        }
+    });
+}
+
 document.querySelectorAll('.calendar-arrow').forEach( e => {
 
     e.addEventListener('click', function(){
@@ -118,5 +135,59 @@ document.querySelectorAll('.calendar-arrow').forEach( e => {
         renderCalendar()
     })
 })
+
+// API Calls
+const http = new easyHTTP;
+
+function getUnavailable(month){
+    unavailableDays = []
+
+    http.get(`${URL}/find-element/Month/${month}`, function(e){
+
+        let data = Object.values(e)
+
+        let noOfTrucks = 0
+
+        data.forEach( e => {
+
+            if( e.Truck_Num != null ){
+
+                noOfTrucks++
+
+            }else{
+                let duplicateNo = 1
+
+                data.forEach( a => {
+
+                    if(e.Day == a.Day){
+
+                        duplicateNo++
+
+                        if(duplicateNo == noOfTrucks){
+                            console.log('gotten!')
+
+                            let thisDay = {
+                                year: a.Year.toString(),
+                                month: a.Month.toString(),
+                                day: a.Day.toString()
+                            }
+
+                            unavailableDays.push(thisDay)
+
+                            data = dayRemove(data, a)
+                        }
+
+                    }
+                
+                })
+
+            }
+        })
+
+        console.log(unavailableDays);
+        connectCalendar()
+    })
+
+}
 
 renderCalendar()
