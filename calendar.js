@@ -1,6 +1,8 @@
 const date = new Date()
+const currentDate = date
 
 function renderCalendar(){
+
     date.setDate(1)
 
     const monthDays = document.querySelector('.calendar-days')
@@ -54,9 +56,28 @@ let unavailableDays = []
 
 function connectCalendar(){
 
-    document.querySelectorAll('.current-month-day').forEach( e => {
+    if(date.getMonth() == currentDate.getMonth()){ 
+        
+        // Make the past days unavailable
+        document.querySelectorAll('.current-month-day').forEach( e => {
 
-        //TEST
+            if( e.textContent <= currentDate.getDate()){
+                e.classList.add('unavailable')
+            }
+
+        })
+    
+        // Disconnect far months
+        document.querySelector('.calendar-arrow.left').classList.add('inactive')
+    }else if( currentDate.getMonth() + 6 == date.getMonth()){
+        
+        document.querySelector('.calendar-arrow.right').classList.add('inactive')
+    }else{
+        document.querySelector('.calendar-arrow.right').classList.add('inactive')
+        document.querySelector('.calendar-arrow.left').classList.add('inactive')
+    }
+
+    document.querySelectorAll('.current-month-day').forEach( e => {
         
         unavailableDays.forEach( e => {
 
@@ -100,6 +121,7 @@ function connectCalendar(){
             e.innerHTML += '<div class="unavailable-popup"><p class="paragraph-8">Date<br>Unavailable</p><div class="triangle"></div></div>'
         }
     })
+
 }
  
 function arrayRemove(arr, value) { 
@@ -140,6 +162,7 @@ document.querySelectorAll('.calendar-arrow').forEach( e => {
 const http = new easyHTTP;
 
 function getUnavailable(month){
+
     unavailableDays = []
 
     http.get(`${URL}/find-element/Month/${month}`, function(e){
