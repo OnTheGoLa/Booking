@@ -122,6 +122,27 @@ function dayRemoveV(arr, value) {
 
 function connectCalendar(month, year){
 
+    if(date.getMonth() == currentDate.getMonth()){ 
+        
+        // Make the past days unavailable
+        document.querySelectorAll('.current-month-day').forEach( e => {
+
+            if( e.textContent <= currentDate.getDate()){
+                e.classList.add('unavailable')
+            }
+
+        })
+    
+        // Disconnect far months
+        document.querySelector('.calendar-arrow.left').classList.add('inactive')
+    }else if( currentDate.getMonth() + 6 == date.getMonth() || currentDate.getMonth() - 6 == date.getMonth()){
+        
+        document.querySelector('.calendar-arrow.right').classList.add('inactive')
+    }else{
+        document.querySelector('.calendar-arrow.right').classList.remove('inactive')
+        document.querySelector('.calendar-arrow.left').classList.remove('inactive')
+    }
+
     if(sessionStorage.getItem('days') != null){
 
         let test = JSON.parse(sessionStorage.getItem('days'))
