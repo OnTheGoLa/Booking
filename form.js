@@ -341,12 +341,12 @@ function addOns(btn){
 
     if(btn.checked == true){
         place.after(div)
-        selectedAddOns.push(price)
+        selectedAddOns.push({name, price})
 
         totalPrice += price
     }else{
         document.querySelector(`.${className}`).remove()
-        arrayRemove(selectedAddOns, price)
+        arrayRemove(selectedAddOns, {name, price})
 
         totalPrice -= price
     }
@@ -418,32 +418,40 @@ function rememberForm(){
     }
 
     form.days = selectedDays
-    form.addOns = selectedAddOns
+    
+    let addOnNames = []
+
+    selectedAddOns.forEach( e => {
+
+        addOnNames.push(e.name)
+    })
+
+    form.addOns = addOnNames
 
     document.querySelectorAll('[name="permit"]').forEach( e => {
 
         if(e.checked){
 
-            form.foodHandlersPermit = e.getAttribute('[value]')
+            form.foodHandlersPermit = e.id
         }
     } )
 
-    form.name = document.querySelector('[name="Name"]')
-    form.businessName = document.querySelector('[name="Business Name"]')
-    form.businessInsta = document.querySelector('[name="Business Instagram"]')
-    form.address = document.querySelector('[name="Address"]')
-    form.apt = document.querySelector('[name="Apt"]')
-    form.city = document.querySelector('[name="City"]')
-    form.state = document.querySelector('[name="State"]')
-    form.zipCode = document.querySelector('[name="Zip Code"]')
-    form.email = document.querySelector('[name="Email"]')
-    form.phone = document.querySelector('[name="Phone Number"]')
+    form.name = document.querySelector('[name="Name"]').value
+    form.businessName = document.querySelector('[name="Business Name"]').value
+    form.businessInsta = document.querySelector('[name="Business Instagram"]').value
+    form.address = document.querySelector('[name="Address"]').value
+    form.apt = document.querySelector('[name="Apt"]').value
+    form.city = document.querySelector('[name="City"]').value
+    form.state = document.querySelector('[name="State"]').value
+    form.zipCode = document.querySelector('[name="Zip Code"]').value
+    form.email = document.querySelector('[name="Email"]').value
+    form.phone = document.querySelector('[name="Phone Number"]').value
 
     document.querySelectorAll('[name="contact method"]').forEach( e => {
 
         if(e.checked){
 
-            form.contactMethod = e.getAttribute('[value]')
+            form.contactMethod = e.id
         }
     } )
 
