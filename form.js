@@ -307,25 +307,7 @@ function formNavigate(btn){
                  if (!allAreFilled) {
                 alert('Please fill all the required fields');
           
-                } else{
-
-                    rememberForm()
-          
-                    stripe.redirectToCheckout({
-
-                        lineItems: [{
-                        price: 'price_1Jxm5wJ2ZoJfeJPyRrBL3mAi',
-                        quantity: selectedDays.length,
-                        }],
-                        mode: 'payment',
-                        successUrl: 'https://on-the-go-la-de313f5726f9acc32090fe8b2f.webflow.io/book-now-copy',
-                        cancelUrl: 'https://on-the-go-la-de313f5726f9acc32090fe8b2f.webflow.io/book-now-copy',
-                    }).then(function (result) {
-                        window.alert('We are having an issue with your request. Please check your connection and try again.')
-                    });
-          
-              }
-
+                }
     }
 
 }
@@ -413,6 +395,11 @@ function daysCost(){
         e.textContent = `$${dayAmount*dayCost}.00`
     })
 
+    document.querySelectorAll('.remaining-balance').forEach(e => {
+
+        e.textContent = `$${(dayAmount*dayCost) + totalPrice - (dayAmount*150)}.00`
+    })
+
     document.querySelectorAll('.total-deposit').forEach(e => {
 
         e.textContent = `$${dayAmount*150}.00`
@@ -426,16 +413,9 @@ function rememberForm(){
         days: [],
         addOns: [],
 
-        foodHandlersPermit: 0,
-
         name: 'a',
         businessName: 'a',
         businessInsta: 'a',
-        address: 'a',
-        apt: 'not filled out',
-        city: 'a',
-        state: '',
-        zipCode: '',
         email: '',
         phone: '',
         contactMethod: '',
@@ -452,22 +432,10 @@ function rememberForm(){
 
     form.addOns = addOnNames
 
-    document.querySelectorAll('[name="permit"]').forEach( e => {
-
-        if(e.checked){
-
-            form.foodHandlersPermit = e.id
-        }
-    } )
 
     form.name = document.querySelector('[name="Name"]').value
     form.businessName = document.querySelector('[name="Business-Name"]').value
     form.businessInsta = document.querySelector('[name="Business-Instagram"]').value
-    form.address = document.querySelector('[name="Address"]').value
-    form.apt = document.querySelector('[name="Apt"]').value
-    form.city = document.querySelector('[name="City"]').value
-    form.state = document.querySelector('[name="State"]').value
-    form.zipCode = document.querySelector('[name="Zip-Code"]').value
     form.email = document.querySelector('[name="Email"]').value
     form.phone = document.querySelector('[name="Phone-Number"]').value
 
@@ -509,8 +477,5 @@ document.querySelectorAll('.checkout-button').forEach( e => {
         formNavigate(e)
     })
 })
-
-// API Calls
-
 
 renderCalendar()
