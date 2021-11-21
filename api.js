@@ -30,7 +30,7 @@ function easyHTTP(){
     let self = this;
     this.http.onload = function() {
        if(self.http.status === 200){
-          callback(JSON.parse(self.http.responseText));
+          callback(self.http.responseText);
        }
     }
        
