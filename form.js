@@ -4,6 +4,8 @@ const currentDate = new Date()
 let selectedDays = []
 let selectedAddOns = []
 let totalPrice = 0
+let totalDayCost = 0
+let totalDeposit = 0
 
 const http = new easyHTTP;
 var stripe = Stripe('pk_live_51HN0nqJ2ZoJfeJPy6PHSpQe5nBORTEfPgP2IvJthnBXGkgwGR5ErLsQhISXTFz9kvWQOP5l4tFUtP4on9IO5vJ4T00J1FzPitG');
@@ -361,7 +363,7 @@ function addOns(btn){
 
         e.textContent = `$${(dayAmount*dayCost) + totalPrice - (dayAmount*150)}.00`
     })
-    
+
     document.querySelector('.add-ons').textContent = `$${totalPrice}.00`
 }
 
@@ -380,6 +382,9 @@ function daysCost(){
         dayCost = 250
     }
 
+    totalDayCost = dayAmount*dayCost
+    totalDeposit = dayAmount*150
+
     place.innerHTML = ''
 
     selectedDays.forEach( day => {
@@ -397,17 +402,17 @@ function daysCost(){
 
     document.querySelectorAll('.total-cost').forEach(e => {
 
-        e.textContent = `$${dayAmount*dayCost}.00`
+        e.textContent = `$${totalDayCost}.00`
     })
 
     document.querySelectorAll('.remaining-balance').forEach(e => {
 
-        e.textContent = `$${(dayAmount*dayCost) + totalPrice - (dayAmount*150)}.00`
+        e.textContent = `$${(totalDayCost) + totalPrice - (totalDeposit)}.00`
     })
 
     document.querySelectorAll('.total-deposit').forEach(e => {
 
-        e.textContent = `$${dayAmount*150}.00`
+        e.textContent = `$${totalDeposit}.00`
     })
 }
 
@@ -424,6 +429,9 @@ function rememberForm(){
         email: '',
         phone: '',
         contactMethod: '',
+
+        deposit: totalDeposit,
+        totalDayCost: totalDayCost,
     }
 
     form.days = selectedDays
