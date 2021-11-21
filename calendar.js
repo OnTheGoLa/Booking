@@ -175,7 +175,7 @@ function getUnavailable(month){
 
             if( e.Truck_Num != null ){
 
-                noOfTrucks++
+                noOfTrucks = e.Truck_Num
 
             }else{
                 let duplicateNo = 1
