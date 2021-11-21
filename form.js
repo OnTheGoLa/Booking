@@ -421,8 +421,8 @@ function rememberForm(){
 
     let form = {
 
-        days: [],
-        addOns: [],
+        days: selectedDays,
+        addOns: selectedAddOns,
         dayCost: dayCost,
 
         name: 'a',
@@ -435,18 +435,6 @@ function rememberForm(){
         deposit: totalDeposit,
         totalDayCost: totalDayCost,
     }
-
-    form.days = selectedDays
-    
-    let addOnNames = []
-
-    selectedAddOns.forEach( e => {
-
-        addOnNames.push(e.name)
-    })
-
-    form.addOns = addOnNames
-
 
     form.name = document.querySelector('[name="Name"]').value
     form.businessName = document.querySelector('[name="Business-Name"]').value
