@@ -147,6 +147,8 @@ function connectCalendar(month, year){
         document.querySelector('.calendar-arrow.left').classList.remove('inactive')
     }
 
+    selectedDays = []
+
     if(sessionStorage.getItem('days') != null){
 
         let test = JSON.parse(sessionStorage.getItem('days'))
@@ -285,7 +287,6 @@ function formNavigate(btn){
             document.querySelector('.form-page.active').classList.remove('active')
 
             if( currentValue == 3){
-                document.querySelector('[direction="payment"]').classList.remove('hidden')
                 document.querySelector('.reserve-button').classList.remove('active')
             }
 
