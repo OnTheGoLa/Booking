@@ -6,6 +6,7 @@ let selectedAddOns = []
 let totalPrice = 0
 let totalDayCost = 0
 let totalDeposit = 0
+let dayCost = 299
 
 const http = new easyHTTP;
 var stripe = Stripe('pk_live_51HN0nqJ2ZoJfeJPy6PHSpQe5nBORTEfPgP2IvJthnBXGkgwGR5ErLsQhISXTFz9kvWQOP5l4tFUtP4on9IO5vJ4T00J1FzPitG');
@@ -183,7 +184,6 @@ function connectCalendar(month, year){
                 }
             }
         })
-
 
         // Unavailable and Selected days
         if(!e.classList.contains('unavailable')){
@@ -373,7 +373,7 @@ function daysCost(){
     const place = document.querySelector('.total-days')
 
     let dayAmount = selectedDays.length
-    let dayCost = 299
+    dayCost = 299
 
     if( dayAmount >= 7){
         dayCost = 270
@@ -423,6 +423,7 @@ function rememberForm(){
 
         days: [],
         addOns: [],
+        dayCost: dayCost,
 
         name: 'a',
         businessName: 'a',
