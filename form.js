@@ -357,6 +357,11 @@ function addOns(btn){
         totalPrice -= price
     }
 
+    document.querySelectorAll('.remaining-balance').forEach(e => {
+
+        e.textContent = `$${(dayAmount*dayCost) + totalPrice - (dayAmount*150)}.00`
+    })
+    
     document.querySelector('.add-ons').textContent = `$${totalPrice}.00`
 }
 
