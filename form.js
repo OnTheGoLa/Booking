@@ -366,7 +366,7 @@ function addOns(btn){
 
     selectedAddOns.forEach( e => {
 
-        text += `${e.name} / $${e.price}`
+        text += `${e.name} / $${e.price} -`
     })
 
     document.querySelector('[name="selected-add-ons"]').value = text
@@ -430,7 +430,7 @@ function daysCost(){
 
     selectedDays.forEach( e => {
 
-        text += `${e.day} ${e.month} ${e.year} `
+        text += `${e.day}/${e.month}/${e.year} `
     })
 
     text += `at $${dayCost}`
