@@ -361,6 +361,15 @@ function addOns(btn){
     }
 
     document.querySelector('.add-ons').textContent = `$${totalPrice}.00`
+
+    let text = ''
+
+    selectedAddOns.forEach( e => {
+
+        text += `${e.name}/${e.price}`
+    })
+
+    document.querySelector('[name="selected-add-ons"]').value = text
 }
 
 function daysCost(){
@@ -415,6 +424,18 @@ function daysCost(){
 
         e.textContent = `$${(dayAmount*dayCost) + totalPrice - (dayAmount*150)}.00`
     })
+
+    
+    let text = ''
+
+    selectedDays.forEach( e => {
+
+        text += `${e.Day} ${e.Month} ${e.Year}`
+    })
+
+    text += `at $${dayCost}`
+
+    document.querySelector('[name="selected-days"]').value = text
 }
 
 function rememberForm(){
