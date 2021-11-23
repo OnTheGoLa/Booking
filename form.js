@@ -355,15 +355,15 @@ function addOns(btn){
 
         totalPrice += price*selectedDays.length
     }else{
-
         arrayRemove(selectedAddOns, {name, price})
         
         if(document.querySelector(`.${className}`) != null){
             document.querySelector(`.${className}`).remove()
             totalPrice -= price*selectedDays.length
-
         }
     }
+
+    console.log(selectedAddOns);
 
     document.querySelector('.add-ons').textContent = `$${totalPrice}.00`
 
