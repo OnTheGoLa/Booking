@@ -436,6 +436,8 @@ function daysCost(){
 
     text += `at $${dayCost}`
 
+    document.querySelector('.addons').innerHTML = ''
+
     document.querySelectorAll('.addon-checkbox').forEach( e => {
 
         addOns(e.nextElementSibling)
