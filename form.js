@@ -349,7 +349,7 @@ function addOns(btn){
     div.classList.add(`${className}`)
 
     if(btn.checked == true){
-        place.after(div)
+        place.appendChild(div)
 
         selectedAddOns.push({name, price})
 
