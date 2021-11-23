@@ -357,10 +357,10 @@ function addOns(btn){
     }else{
 
         arrayRemove(selectedAddOns, {name, price})
-        totalPrice -= price*selectedDays.length
-
+        
         if(document.querySelector(`.${className}`) != null){
-        document.querySelector(`.${className}`).remove()
+            document.querySelector(`.${className}`).remove()
+            totalPrice -= price*selectedDays.length
 
         }
     }
