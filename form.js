@@ -344,20 +344,21 @@ function addOns(btn){
 
     const div = document.createElement('div')
     
-    div.innerHTML = `<p class="form-label small">${name}</p><p class="form-label small">($${price}.00)</p>`
+    div.innerHTML = `<p class="form-label small">${name}</p><p class="form-label small">($${price}.00) (x${selectedDays.length})</p>`
     div.classList.add('div-block-48')
     div.classList.add(`${className}`)
 
     if(btn.checked == true){
         place.after(div)
+
         selectedAddOns.push({name, price})
 
-        totalPrice += price
+        totalPrice += price*selectedDays.length
     }else{
         document.querySelector(`.${className}`).remove()
         arrayRemove(selectedAddOns, {name, price})
 
-        totalPrice -= price
+        totalPrice -= price*selectedDays.length
     }
 
     document.querySelector('.add-ons').textContent = `$${totalPrice}.00`
@@ -366,7 +367,7 @@ function addOns(btn){
 
     selectedAddOns.forEach( e => {
 
-        text += `${e.name} / $${e.price} -`
+        text += `${e.name} / $${e.price} (x${selectedDays.length})-`
     })
 
     document.querySelector('[name="selected-add-ons"]').value = text
@@ -434,6 +435,11 @@ function daysCost(){
     })
 
     text += `at $${dayCost}`
+
+    document.querySelectorAll('.addon-checkbox').forEach( e => {
+
+        addOns(e.nextElementSibling)
+    })
 
     document.querySelector('[name="selected-days"]').value = text
 }
