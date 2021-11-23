@@ -363,8 +363,6 @@ function addOns(btn){
         }
     }
 
-    console.log(selectedAddOns);
-
     document.querySelector('.add-ons').textContent = `$${totalPrice}.00`
 
     let text = ''
@@ -430,7 +428,6 @@ function daysCost(){
         e.textContent = `$${(dayAmount*dayCost) + totalPrice - (dayAmount*150)}.00`
     })
 
-    
     let text = ''
 
     selectedDays.forEach( e => {
@@ -441,7 +438,7 @@ function daysCost(){
     text += `at $${dayCost}`
 
     document.querySelector('.addons').innerHTML = ''
-
+    selectedAddOns = []
     totalPrice = 0
 
     document.querySelectorAll('.addon-checkbox').forEach( e => {
