@@ -438,6 +438,8 @@ function daysCost(){
 
     document.querySelector('.addons').innerHTML = ''
 
+    totalPrice = 0
+
     document.querySelectorAll('.addon-checkbox').forEach( e => {
 
         addOns(e.nextElementSibling)
