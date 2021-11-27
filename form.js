@@ -166,11 +166,6 @@ function connectCalendar(month, year){
         })
     }
 
-    if(selectedDays.find(checkSelectedMonth, month)){
-
-        document.querySelector('.calendar-arrow.right').click()
-    }
-
     document.querySelectorAll('.current-month-day').forEach( e => {
 
         selectedDays.forEach(e => {
@@ -221,6 +216,12 @@ function connectCalendar(month, year){
             e.innerHTML += '<div class="unavailable-popup"><p class="paragraph-8">Date<br>Unavailable</p><div class="triangle"></div></div>'
         }
     })
+
+    
+    if(!selectedDays.find(checkSelectedMonth, month)){
+
+        document.querySelector('.calendar-arrow.right').click()
+    }
 
     daysCost()
 
