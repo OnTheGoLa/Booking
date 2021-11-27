@@ -231,12 +231,13 @@ function connectCalendar(month, year){
     })
 
     
-    if(!selectedDays.find(checkSelectedMonth, month)){
+    if(monthSwitched == 0){
 
-        if(monthSwitched == 0){
+         if(!selectedDays.find(checkSelectedMonth, month) || document.querySelectorAll('.current-month-day').find(checkAvailableDay)){
 
             document.querySelector('.calendar-arrow.right').click()
-        }
+        } 
+
     } else{
         monthSwitched = 1
     }
@@ -247,6 +248,10 @@ function connectCalendar(month, year){
 
 function checkSelectedMonth(day){
     return day.month == this
+}
+
+function checkAvailableDay(day){
+    return day.classList.contains('unavailable') == 0
 }
 
 function formNavigate(btn){
