@@ -231,14 +231,14 @@ function connectCalendar(month, year){
     })
 
     
-    if(monthSwitched == 0){
+    if(monthSwitched == 0 && selectedDays != []){
 
-         if(!selectedDays.find(checkSelectedMonth, month) || !document.querySelectorAll('.current-month-day').find(checkAvailableDay)){
+         if(!selectedDays.find(checkSelectedMonth, month)){
 
             document.querySelector('.calendar-arrow.right').click()
         } else{
-            monthSwitched = 1
-        }
+        monthSwitched = 1
+    }
 
     } 
 
