@@ -166,6 +166,11 @@ function connectCalendar(month, year){
         })
     }
 
+    if(selectedDays.find(checkSelectedMonth, month)){
+
+        document.querySelector('.calendar-arrow.right').click()
+    }
+
     document.querySelectorAll('.current-month-day').forEach( e => {
 
         selectedDays.forEach(e => {
@@ -219,6 +224,10 @@ function connectCalendar(month, year){
 
     daysCost()
 
+}
+
+function checkSelectedMonth(day){
+    return day.month == this
 }
 
 function formNavigate(btn){
