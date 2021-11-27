@@ -9,6 +9,8 @@ let totalDeposit = 0
 let dayCost = 299
 let monthSwitched = 0
 
+let unavailableDays = []
+
 const http = new easyHTTP;
 var stripe = Stripe('pk_live_51HN0nqJ2ZoJfeJPy6PHSpQe5nBORTEfPgP2IvJthnBXGkgwGR5ErLsQhISXTFz9kvWQOP5l4tFUtP4on9IO5vJ4T00J1FzPitG');
 
@@ -148,6 +150,16 @@ function connectCalendar(month, year){
         document.querySelector('.calendar-arrow.right').classList.remove('inactive')
         document.querySelector('.calendar-arrow.left').classList.remove('inactive')
     }
+
+    unavailableDays.forEach( e => {
+
+        document.querySelectorAll('.current-month-day').forEach( day => {
+
+            if (day.textContent == e.day){
+                day.classList.add('unavailable')
+            }
+        })
+    })
 
     selectedDays = []
 
