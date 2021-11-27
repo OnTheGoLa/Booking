@@ -231,7 +231,7 @@ function connectCalendar(month, year){
     })
 
     
-    if(monthSwitched == 0 && selectedDays != []){
+    if(monthSwitched == 0 && selectedDays.length != 0){
 
          if(!selectedDays.find(checkSelectedMonth, month)){
 
