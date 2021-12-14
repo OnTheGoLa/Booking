@@ -178,7 +178,7 @@ function getUnavailable(month){
                 noOfTrucks = e.Truck_Num
 
             }else{
-                let duplicateNo = 1
+                let duplicateNo = 0
 
                 data.forEach( a => {
 
