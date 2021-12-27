@@ -3,7 +3,7 @@ function easyHTTP(){
     this.http = new XMLHttpRequest;
  }
  
- const URL = 'https://api-8i9is.ondigitalocean.app'
+ const URL = 'https://api-2adx9.ondigitalocean.app'
  
  // HTTP GET request
  easyHTTP.prototype.get = function(url, callback){

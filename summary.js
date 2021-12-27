@@ -29,7 +29,7 @@ const dayAmount = selectedDays.length
 
 selectedAddOns = form.addOns
 
-http.post('https://api-8i9is.ondigitalocean.app/insert-many', selectedDays, function(e){
+http.post('https://api-2adx9.ondigitalocean.app/insert-many', selectedDays, function(e){
 
     document.querySelector('.preloader').classList.remove('active')
     document.querySelector('.res-summary-page').classList.add('active')
