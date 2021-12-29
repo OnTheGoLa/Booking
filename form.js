@@ -543,6 +543,11 @@ document.querySelectorAll('.calendar-arrow').forEach( e => {
 document.querySelectorAll('.checkout-button').forEach( e => {
     e.addEventListener('click', function(){
         formNavigate(e)
+
+        window.scroll({
+            top: 100,
+            behavior: 'smooth'
+          });
     })
 })
 
