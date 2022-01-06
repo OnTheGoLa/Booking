@@ -544,10 +544,7 @@ document.querySelectorAll('.checkout-button').forEach( e => {
     e.addEventListener('click', function(){
         formNavigate(e)
 
-        window.scroll({
-            top: 100,
-            behavior: 'smooth'
-          });
+        window.scrollTo(0, 0);
     })
 })
 
