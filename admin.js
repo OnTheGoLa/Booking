@@ -112,7 +112,11 @@ function addDay(){
     const day = container.querySelector('[name="day"]').value
     const month = container.querySelector('[name="month"]').value
     const year = container.querySelector('[name="year"]').value
-    const businessName = container.querySelector('[name="businessName"]').value
+    let businessName = container.querySelector('[name="businessName"]').value
+
+    if(businessName == ''){
+        businessName = 'no-name-entered'
+    }
 
     const selectedDay = {
         Day: day,
@@ -123,7 +127,47 @@ function addDay(){
 
     http.post('https://api-2adx9.ondigitalocean.app/insert', selectedDay, function(e){
         console.log(selectedDay);
+
+        alert('The day has been succesfully booked')
+
     })
+}
+
+function blockDay(){
+
+    let no = Number(document.querySelector('.truck-no').textContent)
+
+    const container = document.querySelector('.days-addition-bar')
+    const day = container.querySelector('[name="day"]').value
+    const month = container.querySelector('[name="month"]').value
+    const year = container.querySelector('[name="year"]').value
+    let businessName = container.querySelector('[name="businessName"]').value
+
+    if(businessName == ''){
+        businessName = 'no-name-entered'
+    }
+
+    let arr = []
+
+    const selectedDay = {
+        Day: day,
+        Month: month,
+        Year: year,
+        BusinessName: businessName,
+    }
+
+    for (let i = 0; i < no; i++) {
+        
+        arr.push(selectedDay)
+    }
+
+    http.post('https://api-2adx9.ondigitalocean.app/insert-many', arr, function(e){
+
+        console.log(arr);
+
+        alert('The day has been succesfully blocked')
+   })
+
 }
 
 function deleteDay(e){
@@ -150,6 +194,8 @@ document.querySelector('.open-post-tab').addEventListener('click', () => {
         postTab.classList.add('active')
     }
 })
+
+document.querySelector('.block').addEventListener('click', blockDay)
 
 document.querySelectorAll('.truck-no-m').forEach(e => {
     e.addEventListener('click', a => {
