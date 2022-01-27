@@ -484,28 +484,43 @@ function daysCost(){
 
 function rememberForm(){
 
-    let form = {
+    // let form = {
 
-        days: selectedDays,
-        addOns: selectedAddOns,
-        dayCost: dayCost,
+    //     days: selectedDays,
+    //     addOns: selectedAddOns,
+    //     dayCost: dayCost,
 
-        name: 'a',
-        businessName: 'a',
-        businessInsta: 'a',
-        email: '',
-        phone: '',
-        contactMethod: '',
+    //     name: 'a',
+    //     businessName: 'a',
+    //     businessInsta: 'a',
+    //     email: '',
+    //     phone: '',
+    //     contactMethod: '',
 
-        deposit: totalDeposit,
-        totalDayCost: totalDayCost,
-    }
+    //     deposit: totalDeposit,
+    //     totalDayCost: totalDayCost,
+    // }
+    let form = [
 
-    form.name = document.querySelector('[name="Name"]').value
-    form.businessName = document.querySelector('[name="Business-Name"]').value
-    form.businessInsta = document.querySelector('[name="Business-Instagram"]').value
-    form.email = document.querySelector('[name="Email"]').value
-    form.phone = document.querySelector('[name="Phone-Number"]').value
+        {days: selectedDays},
+        {addOns: selectedAddOns},
+        {dayCost: dayCost},
+
+
+    ]
+
+    document.querySelectorAll('.rental-form [name]').forEach( e => {
+        const name = e.getAttribute('name')
+
+        const obj = {
+            name: name,
+            value: e.value
+        }
+
+        form.push(obj)
+    })
+
+    console.log(form);
 
     document.querySelectorAll('[name="contact-method"]').forEach( e => {
 

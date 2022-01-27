@@ -4,6 +4,7 @@ let selectedDays = []
 let selectedAddOns = []
 
 const UIremaining = document.querySelector('.remaining-balance')
+const UIform = document.querySelector('.rental-form')
 
 if( JSON.parse(sessionStorage.getItem('days')) == null){
     document.querySelector('.preloader').classList.remove('active')
@@ -13,13 +14,14 @@ if( JSON.parse(sessionStorage.getItem('days')) == null){
 let test = JSON.parse(sessionStorage.getItem('days'))
 let form = JSON.parse(sessionStorage.getItem('form'))
 
+// API POST
 test.forEach( e => {
 
     let thisDay = {
         Year: e.year,
         Month: e.month,
         Day: e.day,
-        BusinessName: form.businessName
+        BusinessName: form.find(x => x.name == 'Business-Name').value
     }
 
     selectedDays.push(thisDay)
@@ -86,4 +88,13 @@ http.post('https://api-2adx9.ondigitalocean.app/insert-many', selectedDays, func
     sessionStorage.removeItem('form')
     sessionStorage.removeItem('days')
 })
+
+//Form Submit
+let formNew = form.filter(x => x.name != undefined)
+
+formNew.forEach( e => {
+    UIform.querySelector(`[name='${e.name}']`).value = e.value
+})
+
+UIform.submit()
 }
