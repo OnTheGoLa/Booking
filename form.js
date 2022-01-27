@@ -510,11 +510,23 @@ function rememberForm(){
     ]
 
     document.querySelectorAll('.rental-form [name]').forEach( e => {
-        const name = e.getAttribute('name')
 
-        const obj = {
-            name: name,
-            value: e.value
+        const name = e.getAttribute('name')
+        let obj
+
+        if(e.getAttribute('type') == 'checkbox' || e.getAttribute('type') == 'radio'){
+
+            obj ={
+                name: name,
+                checked: e.checked
+            }
+
+        } else{
+
+            obj = {
+                name: name,
+                value: e.value
+            }
         }
 
         form.push(obj)
