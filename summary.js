@@ -14,6 +14,8 @@ if( JSON.parse(sessionStorage.getItem('days')) == null){
 let test = JSON.parse(sessionStorage.getItem('days'))
 let form = JSON.parse(sessionStorage.getItem('form'))
 
+console.log(form);
+
 // API POST
 test.forEach( e => {
 
@@ -29,7 +31,7 @@ test.forEach( e => {
 
 const dayAmount = selectedDays.length
 
-selectedAddOns = form.addOns
+selectedAddOns = form.find( x => x.addOns != undefined).addOns
 
 http.post('https://api-2adx9.ondigitalocean.app/insert-many', selectedDays, function(e){
 
@@ -93,7 +95,10 @@ http.post('https://api-2adx9.ondigitalocean.app/insert-many', selectedDays, func
 let formNew = form.filter(x => x.name != undefined)
 
 formNew.forEach( e => {
-    UIform.querySelector(`[name='${e.name}']`).value = e.value
+    if(e.type != 'file'){
+
+        UIform.querySelector(`[name='${e.name}']`).value = e.value
+    }
 })
 
 UIform.submit()
