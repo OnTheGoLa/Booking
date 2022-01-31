@@ -343,6 +343,24 @@ function formNavigate(btn){
                  if (!allAreFilled) {
                 alert('Please fill all the required fields');
           
+                } else{
+                    rememberForm()
+          
+                    stripe.redirectToCheckout({
+
+                    lineItems: [{
+                    price: 'price_1Jxm5wJ2ZoJfeJPyRrBL3mAi',
+                quantity: selectedDays.length,
+                    }],
+                    mode: 'payment',
+                //    payment_intent_data.metadata: {
+                //  	'dates': selectedDays
+                //},
+                    successUrl: 'https://www.onthego.la/reservation-summary',
+                    cancelUrl: 'https://www.onthego.la/book-now-v2',
+                }).then(function (result) {
+                window.alert('We are having an issue with your request. Please check your connection and try again.')
+                });
                 }
     }
 
