@@ -399,13 +399,14 @@ function addOns(btn){
     div.classList.add('div-block-48')
     div.classList.add(`${className}`)
 
-    if(btn.checked == true){
+    if(btn.checked === true){
         place.appendChild(div)
 
         selectedAddOns.push({name, price})
 
         totalPrice += price*selectedDays.length
     }else{
+        console.log('test');
         arrayRemove(selectedAddOns, {name, price})
         
         if(document.querySelector(`.${className}`) != null){
