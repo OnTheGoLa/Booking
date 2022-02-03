@@ -399,16 +399,18 @@ function addOns(btn){
     div.classList.add('div-block-48')
     div.classList.add(`${className}`)
 
+    let item = {name, price}
+
     if(btn.checked === true){
         place.appendChild(div)
 
-        selectedAddOns.push({name, price})
+        selectedAddOns.push(item)
 
         totalPrice += price*selectedDays.length
     }else{
         console.log('test');
 
-        const index = selectedAddOns.indexOf({name, price});
+        const index = selectedAddOns.indexOf(item);
         if (index > -1) {
         array.splice(index, 1); // 2nd parameter means remove one item only
         }
