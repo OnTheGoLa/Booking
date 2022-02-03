@@ -407,7 +407,11 @@ function addOns(btn){
         totalPrice += price*selectedDays.length
     }else{
         console.log('test');
-        selectedAddOns = arrayRemove(selectedAddOns, {name, price});
+
+        const index = selectedAddOns.indexOf({name, price});
+        if (index > -1) {
+        array.splice(index, 1); // 2nd parameter means remove one item only
+        }
         
         if(document.querySelector(`.${className}`) != null){
             document.querySelector(`.${className}`).remove()
