@@ -408,7 +408,6 @@ function addOns(btn){
 
         totalPrice += price*selectedDays.length
     }else{
-        console.log('test');
 
         const index = selectedAddOns.indexOf(item);
         if (index > -1) {
@@ -421,22 +420,18 @@ function addOns(btn){
         }
     }
 
-    console.log(btn);
-    console.log(btn.checked);
-    console.log(selectedAddOns);
-
     document.querySelector('.add-ons').textContent = `$${totalPrice}.00`
 
-    let text = ''
+    // let text = ''
 
-    selectedAddOns.forEach( e => {
+    // selectedAddOns.forEach( e => {
 
-        text += `${e.name} / $${e.price} (x${selectedDays.length})-`
-    })
+    //     text += `${e.name} / $${e.price} (x${selectedDays.length})-`
+    // })
 
-    console.log(text);
+    // console.log(text);
 
-    document.querySelector('[name="selected-add-ons"]').value = text
+    // document.querySelector('[name="selected-add-ons"]').value = text
 }
 
 function daysCost(){
