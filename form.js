@@ -412,7 +412,7 @@ function addOns(btn){
 
         const index = selectedAddOns.indexOf(item);
         if (index > -1) {
-        array.splice(index, 1); // 2nd parameter means remove one item only
+        selectedAddOns.splice(index, 1); // 2nd parameter means remove one item only
         }
         
         if(document.querySelector(`.${className}`) != null){
