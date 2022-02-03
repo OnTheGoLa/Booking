@@ -407,6 +407,7 @@ function addOns(btn){
         totalPrice += price*selectedDays.length
     }else{
         console.log('test');
+        console.log(arrayRemove(selectedAddOns, {name, price}));
         arrayRemove(selectedAddOns, {name, price})
         
         if(document.querySelector(`.${className}`) != null){
@@ -427,6 +428,8 @@ function addOns(btn){
 
         text += `${e.name} / $${e.price} (x${selectedDays.length})-`
     })
+
+    console.log(text);
 
     document.querySelector('[name="selected-add-ons"]').value = text
 }
