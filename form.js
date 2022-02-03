@@ -414,6 +414,10 @@ function addOns(btn){
         }
     }
 
+    console.log(btn);
+    console.log(btn.checked);
+    console.log(selectedAddOns);
+
     document.querySelector('.add-ons').textContent = `$${totalPrice}.00`
 
     let text = ''
