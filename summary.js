@@ -2,6 +2,7 @@ const http = new easyHTTP
 
 let selectedDays = []
 let selectedAddOns = []
+let addOnCost
 let PNR
 
 const UIremaining = document.querySelector('.remaining-balance')
@@ -27,7 +28,6 @@ http.post('https://api-2adx9.ondigitalocean.app/insert-many', selectedDays, func
     let formNew = form.filter(x => x.name != undefined)
     
     formNew.forEach( e => {
-        console.log(e);
 
         if(e.name != 'file-2'){
 
@@ -56,6 +56,35 @@ http.post('https://api-2adx9.ondigitalocean.app/insert-many', selectedDays, func
 
 
     })
+
+    //Extra fields
+    const dayAmount = selectedDays.length
+    let dayCost = form.find(x=>x.dayCost != undefined).dayCost
+
+    const UIaddons = document.getElementById('addons')
+    const UIdeposit = document.getElementById('deposit')
+    const UIremaining = document.getElementById('remaining')
+    const UIpaid = document.getElementById('paid')
+    const UItotal = document.getElementById('total')
+
+    selectedAddOns = form.find( x => x.addOns != undefined).addOns
+
+    UIaddons.value = ''
+
+    selectedAddOns.forEach( e => {
+
+        UIaddons.value += `${e.name} at ${e.price} for ${dayAmount} days,`
+    })
+
+    UIaddons.value += `for a total of ${addOnCost}`
+
+    UIdeposit.value = `$${dayAmount*150}`
+
+    UIremaining.value = `${dayCost*selectedDays.length + addOnCost - 150*selectedDays.length}`
+
+    UIpaid.value = `${150*selectedDays.length}`
+    
+    UItotal.value = `${dayCost*selectedDays.length}`
     
     window.sessionStorage.setItem('submitted', 1)
 
@@ -121,7 +150,7 @@ function placeholder(){
     document.querySelector('.total-cost').textContent = `$${dayCost*selectedDays.length}.00`
     document.querySelector('.total-deposit').textContent = `$${150*selectedDays.length}.00`
 
-    let addOnCost = 0
+    addOnCost = 0
 
     selectedAddOns.forEach( e => {
 
