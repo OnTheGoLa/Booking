@@ -121,7 +121,8 @@ function connectCalendar(){
             e.innerHTML += '<div class="unavailable-popup"><p class="paragraph-8">Date<br>Unavailable</p><div class="triangle"></div></div>'
         }
     })
-
+    
+ document.querySelector('.calendar').style.pointerEvents = "auto";
 }
  
 function arrayRemove(arr, value) { 
