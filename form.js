@@ -244,6 +244,7 @@ function connectCalendar(month, year){
 
     daysCost()
 
+     document.querySelector('.calendar').style.pointerEvents = "auto";
 }
 
 function checkSelectedMonth(day){
