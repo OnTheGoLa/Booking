@@ -350,7 +350,7 @@ function formNavigate(btn){
                     stripe.redirectToCheckout({
 
                     lineItems: [{
-                    price: 'price_1Jxm5wJ2ZoJfeJPyRrBL3mAi',
+                    price: 'price_1KyCwbJ2ZoJfeJPyxebs7TP4',
                 quantity: selectedDays.length,
                     }],
                     mode: 'payment',
