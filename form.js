@@ -6,7 +6,7 @@ let selectedAddOns = []
 let totalPrice = 0
 let totalDayCost = 0
 let totalDeposit = 0
-let dayCost = 299
+let dayCost = 349
 let monthSwitched = 0
 
 let unavailableDays = []
@@ -440,18 +440,18 @@ function daysCost(){
     const place = document.querySelector('.total-days')
 
     let dayAmount = selectedDays.length
-    dayCost = 299
+    dayCost = 349
 
     if( dayAmount >= 7){
-        dayCost = 270
+        dayCost = 300
     }
 
     if( dayAmount >= 10){
-        dayCost = 250
+        dayCost = 275
     }
 
     totalDayCost = dayAmount*dayCost
-    totalDeposit = dayAmount*150
+    totalDeposit = dayAmount*200
 
     place.innerHTML = ''
 
@@ -475,7 +475,7 @@ function daysCost(){
 
     document.querySelectorAll('.remaining-balance').forEach(e => {
 
-        e.textContent = `$${(totalDayCost) + totalPrice - (totalDeposit)}.00`
+        e.textContent = `$${(totalDayCost) + totalPrice - (totalDeposit / 2)}.00`
     })
 
     document.querySelectorAll('.total-deposit').forEach(e => {
@@ -485,7 +485,7 @@ function daysCost(){
 
     document.querySelectorAll('.remaining-balance').forEach(e => {
 
-        e.textContent = `$${(dayAmount*dayCost) + totalPrice - (dayAmount*150)}.00`
+        e.textContent = `$${(dayAmount*dayCost) + totalPrice - (dayAmount*100)}.00`
     })
 
     let text = ''

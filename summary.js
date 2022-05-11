@@ -78,11 +78,11 @@ http.post('https://api-2adx9.ondigitalocean.app/insert-many', selectedDays, func
 
     UIaddons.value += `for a total of ${addOnCost}`
 
-    UIdeposit.value = `$${dayAmount*150}`
+    UIdeposit.value = `$${dayAmount*200}`
 
-    UIremaining.value = `${dayCost*selectedDays.length + addOnCost - 150*selectedDays.length}`
+    UIremaining.value = `${dayCost*selectedDays.length + addOnCost - 100*selectedDays.length}`
 
-    UIpaid.value = `${150*selectedDays.length}`
+    UIpaid.value = `${200*selectedDays.length}`
     
     UItotal.value = `${dayCost*selectedDays.length}`
     
@@ -141,14 +141,14 @@ function placeholder(){
 
         let divTwo = document.createElement('div')
 
-        divTwo.innerHTML = `<p class="paragraph-15">${e.Month} ${e.Day}</p><p class="paragraph-15">($150.00)</p>`
+        divTwo.innerHTML = `<p class="paragraph-15">${e.Month} ${e.Day}</p><p class="paragraph-15">($200.00)</p>`
         divTwo.classList.add('reservation-info-duo')
 
         depositWrapper.appendChild(divTwo)
     })
 
     document.querySelector('.total-cost').textContent = `$${dayCost*selectedDays.length}.00`
-    document.querySelector('.total-deposit').textContent = `$${150*selectedDays.length}.00`
+    document.querySelector('.total-deposit').textContent = `$${200*selectedDays.length}.00`
 
     addOnCost = 0
 
@@ -164,7 +164,7 @@ function placeholder(){
         addOnsWrapper.appendChild(div)
     })
 
-    UIremaining.textContent = `$${dayCost*selectedDays.length + addOnCost - 150*selectedDays.length}.00`
+    UIremaining.textContent = `$${dayCost*selectedDays.length + addOnCost - 100*selectedDays.length}.00`
 
     document.querySelector('.add-on-cost').textContent = `$${addOnCost}.00`
 }
